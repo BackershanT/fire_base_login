@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "353763155584",
+    "project_id": "firbaselogin-f1adf",
+    "storage_bucket": "firbaselogin-f1adf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:353763155584:android:ed90af25f38eb698d1d065",
+        "android_client_info": {
+          "package_name": "com.example.fire_base_login"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "353763155584-cs7fng9ichs2ps0dcmvg2td1jqhc84q2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB6owNq2taO4mTmNxIYj6UVhVIEZQ6Uobw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "353763155584-cs7fng9ichs2ps0dcmvg2td1jqhc84q2.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "353763155584-gcatnokvuqdu05kfchci7u8out8m443b.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.fireBaseLogin"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

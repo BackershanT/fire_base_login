@@ -1,4 +1,4 @@
-import 'package:fire_base_login/src/pages/login_page.dart';
+import 'package:fire_base_login/src/pages/auth/auth_page.dart';
 import 'package:flutter/material.dart';
 
 class MyApp extends StatelessWidget {
@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       debugShowCheckedModeBanner: false,
-      home: const LoginPage(),
+      home: const AuthPage(),
     );
   }
 }

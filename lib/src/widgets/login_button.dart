@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 
 class LoginButton extends StatelessWidget {
   final Function()? onTap;
-  const LoginButton({Key, required this.onTap,  key}) : super(key: key);
+  final String text;
+  const LoginButton({Key, required this.onTap,  key, required this.text}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +17,7 @@ class LoginButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(8)
         ),
 
-        child: const Text('Login',style: TextStyle(color: Colors.white),),
+        child:  Text(text,style: TextStyle(color: Colors.white),),
       ),
     );
   }

@@ -4,21 +4,23 @@ import 'package:fire_base_login/src/widgets/users_text.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-class LoginPage extends StatefulWidget {
+class RegisterPage extends StatefulWidget {
   final Function()? onTap;
-  const LoginPage({Key? key,required this.onTap}) : super(key: key);
+
+  const RegisterPage({Key? key, this.onTap}) : super(key: key);
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<RegisterPage> createState() => _RegisterPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _RegisterPageState extends State<RegisterPage> {
   ///textediting_controller
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+  final confirmpasswordController = TextEditingController();
 
-  ///sign_in_user_method
-  void signUserIn() async {
+  ///sign_Up_user_method
+  void signUserUp() async {
     ///show loading circle
     showDialog(
         context: context,
@@ -26,30 +28,35 @@ class _LoginPageState extends State<LoginPage> {
           return Center(
             child: CircularProgressIndicator(),
           );
-        });
+        }
+        );
 
     ///try sign iin
     try {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
-          email: emailController.text,
-          password: passwordController.text);
+     //check if password is confirmed
+      if(passwordController.text == confirmpasswordController.text){
+        await FirebaseAuth.instance.createUserWithEmailAndPassword(
+            email: emailController.text, password: passwordController.text);
+      }else{
+        //show error Mesage
+        showErrorMessage("password didnt match!");
+      }
 
       ///pop the loading Circle
       Navigator.pop(context);
     } on FirebaseAuthException catch (e) {
-
-
       ///pop the loading Circle
       Navigator.pop(context);
       showErrorMessage(e.code);
     }
   }
+
   void showErrorMessage(String message) {
     showDialog(
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: Text('Incorrect Email or password'),
+          title: Text('Incorrect Email'),
         );
       },
     );
@@ -72,12 +79,12 @@ class _LoginPageState extends State<LoginPage> {
               ),
               Icon(
                 Icons.account_circle,
-                size: 100,
+                size: 50,
               ),
 
               ///welcome_text
               Text(
-                'Welcome',
+                'Create Account',
                 style: TextStyle(fontSize: 16),
               ),
               SizedBox(
@@ -91,7 +98,7 @@ class _LoginPageState extends State<LoginPage> {
                 controller: emailController,
               ),
               SizedBox(
-                height: 50,
+                height: 20,
               ),
 
               ///password
@@ -99,6 +106,15 @@ class _LoginPageState extends State<LoginPage> {
                 hintText: 'Password',
                 obscureText: true,
                 controller: passwordController,
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              ///confirm password
+              UsersText(
+                hintText: ' Confirm Password',
+                obscureText: true,
+                controller: confirmpasswordController,
               ),
 
               ///forget_password
@@ -116,9 +132,9 @@ class _LoginPageState extends State<LoginPage> {
               ),
 
               ///signin_button
-              LoginButton(
-                text: "Login ",
-                onTap: signUserIn,
+              LoginButton(text: "SignUp",
+
+                onTap: signUserUp,
               ),
               SizedBox(
                 height: 50,
@@ -173,14 +189,14 @@ class _LoginPageState extends State<LoginPage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text('not a member?'),
+                  Text('Already have an account?'),
                   SizedBox(
                     width: 5,
                   ),
                   GestureDetector(
-                    onTap:widget.onTap ,
+                    onTap: widget.onTap,
                     child: Text(
-                      'Registernow',
+                      'Login now',
                       style: TextStyle(
                           color: Colors.blue, fontWeight: FontWeight.bold),
                     ),
